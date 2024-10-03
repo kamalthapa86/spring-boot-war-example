@@ -32,6 +32,10 @@ pipeline{
         }
 
         stage("DeployServer Deployment"){
+            input {
+                message "Deploying in Proudction Server..."
+                ok "Please give confirmation"
+            }
             steps{
                 // deploy on Deployement
                 deploy adapters: [tomcat9(credentialsId: 'tomcat9details', path: '', url: 'http://172.17.0.4:8080')], contextPath: '/app', war: '**/*.war'
